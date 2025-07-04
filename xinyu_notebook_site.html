@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>星羽的笔记本</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto Mono', monospace;
+      background-color: #0d1117;
+      color: #c9d1d9;
+    }
+    header {
+      background-color: #161b22;
+      padding: 1em 2em;
+      border-bottom: 1px solid #30363d;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.8em;
+    }
+    nav {
+      display: flex;
+      gap: 1.5em;
+      margin-top: 0.5em;
+    }
+    nav a {
+      color: #58a6ff;
+      text-decoration: none;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      padding: 2em;
+      max-width: 800px;
+      margin: auto;
+    }
+    section {
+      margin-bottom: 2em;
+    }
+    .upload {
+      background-color: #161b22;
+      padding: 1em;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+    }
+    input[type="file"] {
+      color: #c9d1d9;
+    }
+    .note-link {
+      display: block;
+      margin: 0.5em 0;
+      color: #8b949e;
+    }
+    footer {
+      text-align: center;
+      color: #6e7681;
+      padding: 1em;
+      font-size: 0.9em;
+      border-top: 1px solid #30363d;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>星羽的笔记本</h1>
+    <nav>
+      <a href="#notes">学习笔记</a>
+      <a href="#life">生活记录</a>
+      <a href="#upload">上传内容</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="notes">
+      <h2>学习笔记</h2>
+      <p>这里会展示你上传的学习笔记：</p>
+      <div id="noteList"></div>
+    </section>
+
+    <section id="life">
+      <h2>生活记录</h2>
+      <p>此处可以写一些日记、生活感悟等内容。</p>
+    </section>
+
+    <section id="upload">
+      <h2>上传笔记</h2>
+      <div class="upload">
+        <form id="uploadForm">
+          <input type="file" id="fileInput" />
+          <button type="submit">上传</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 星羽. 由 HTML + CSS 驱动
+  </footer>
+
+  <script>
+    const uploadForm = document.getElementById('uploadForm');
+    const fileInput = document.getElementById('fileInput');
+    const noteList = document.getElementById('noteList');
+
+    uploadForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const file = fileInput.files[0];
+      if (file) {
+        const url = URL.createObjectURL(file);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = file.name;
+        link.textContent = file.name;
+        link.className = 'note-link';
+        noteList.appendChild(link);
+      }
+    });
+  </script>
+</body>
+</html>
