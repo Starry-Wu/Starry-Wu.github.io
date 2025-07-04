@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: main  # 或者你的主分支名
+  branch: main
 
 media_folder: "uploads"
 public_folder: "/uploads"
@@ -10,16 +10,16 @@ collections:
     label: "学习笔记"
     folder: "notes"
     create: true
-    slug: "{{slug}}"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "标题", name: "title", widget: "string" }
-      - { label: "内容", name: "body", widget: "markdown" }
+      - { label: "正文", name: "body", widget: "markdown" }
 
   - name: "life"
     label: "生活记录"
     folder: "life"
     create: true
-    slug: "{{slug}}"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "标题", name: "title", widget: "string" }
-      - { label: "内容", name: "body", widget: "markdown" }
+      - { label: "正文", name: "body", widget: "markdown" }
